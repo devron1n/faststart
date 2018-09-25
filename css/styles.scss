@@ -1,0 +1,747 @@
+$mainColor: #3eb0f7;
+$mainColorLight: #3eb0f770;
+$mainColorDark: #258dce;
+$mainColor2: white;
+$mainColor2Light: rgba(255, 255, 255, 0.8);
+$blockColor: #f6f6f6;
+$fontColor: grey;
+$coverColor: rgba(0, 0, 0, 0.8);
+$formPlaceholderText: rgba(51, 51, 51, 0.3);
+$formTextBackground: #fff;
+
+@mixin setWidthAndHeight($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+@mixin setColorAndBackground($color, $background) {
+    color: $color;
+    background: $background;
+}
+
+@mixin setBorderRadius($border-radius) {
+    border-radius: $border-radius;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Open Sans", "Serif";
+    font-weight: 300;
+    text-decoration: none;
+    color: $fontColor;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+h1 {
+    font-size: 56px;
+    margin: 30px 0 30px 0;
+}
+
+h2 {
+    font-size: 40px;
+    font-weight: 300;
+    margin: 15px 0 15px 0;
+}
+
+h3 {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 20px 0 20px 0;
+}
+
+blockquote {
+    text-align: center;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 28px;
+}
+
+header {
+    * {
+        color: white;
+    }
+}
+
+.logo {
+    height: 37px;
+    vertical-align: middle;
+}
+
+.wide {
+    width: 100%;
+}
+
+.back-img {
+    height: 650px;
+    background: center center / cover fixed;
+}
+
+.cover {
+    background: $coverColor;
+    @include setWidthAndHeight(100%, 100%);
+}
+
+.wrapper {
+    max-width: 1150px;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.wrapper--small {
+    max-width: 950px;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.container {
+
+    .row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .row:not(:last-of-type) {
+        margin-bottom: 10px;
+    }
+
+    .col {
+        display: flex;
+        flex-direction: column;       
+    }
+
+    .col:not(:last-of-type) {
+        margin-right: 30px;
+    }
+
+    p {
+        font-size: 17px;
+        line-height: 28px;
+    }
+}
+
+.button-section {
+    margin-top: 40px;
+}
+
+.button {
+    font-size: 17px;
+    font-weight: bold;
+    padding: 15px 35px;
+    border: 2px solid $mainColor;
+    border-radius: 100px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: 1s all;
+}
+
+.button.filled {
+    @include setColorAndBackground($mainColor2, $mainColor);
+
+    &:hover {
+        @include setColorAndBackground($mainColor, transparent);
+    }
+}
+
+.button.empty {
+    @include setColorAndBackground($mainColor, transparent);
+
+    &:hover {
+        @include setColorAndBackground($mainColor2, $mainColor);
+    }
+}
+
+.form {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+
+    *:not(:last-child) {
+        margin-bottom: 15px;
+    }
+
+    input {
+        padding: 5px 15px;
+        font-size: 18px;
+        height: 55px;
+        @include setColorAndBackground($fontColor, $formTextBackground);
+
+        &::placeholder {
+            @include setColorAndBackground($formPlaceholderText, $formTextBackground);
+        }
+    }
+
+    textarea {
+        padding: 0 15px;
+        font-size: 18px;
+        line-height: 55px;
+        @include setColorAndBackground($fontColor, $formTextBackground);
+        resize: none;
+
+        &::placeholder {
+            @include setColorAndBackground($formPlaceholderText, $formTextBackground);
+        }
+    }
+
+    .button {
+        font-weight: 500;
+        width: 100%;
+        @include setBorderRadius(0);
+    }
+
+    .button.filled {
+        &:hover {
+            @include setColorAndBackground($mainColor2, $mainColorDark);
+            border-color: $mainColorDark;
+        }
+    }
+
+    p {
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 26px;
+    }
+
+    p.title {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    p.small {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.8);
+    }
+}
+
+.form.email {
+    padding: 20px;
+    background: rgba(255,255,255,0.2);
+    @include setBorderRadius(5px);
+}
+
+.menu {
+    @include setWidthAndHeight(100%, 50px);
+    box-shadow: 0px 0px 5px 0px $fontColor;
+    background-color: $mainColor2Light;
+    z-index: 999;
+
+    .menu-logo a {
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+
+    .menu-links {
+        a {
+            color: $fontColor;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 50px;
+            margin: 0 15px 0 15px;
+            transition: 500ms all;
+
+            &:hover {
+                color: $mainColor;
+            }
+        }
+    }
+}
+
+.hovered {
+    color: $mainColor !important;
+}
+
+.button-toTop {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 0 20px 20px 0;
+    cursor: pointer;
+    z-index: 998;
+    display: none;
+
+    svg {
+        @include setWidthAndHeight(40px, 40px);
+        opacity: 0.8;   
+        
+        * {
+            transition: 500ms all;
+        }
+
+        .border {
+            fill: $mainColor;
+        }
+        
+        .bg {
+            fill: transparent;
+        }
+
+        .arrow {
+            fill: $mainColor;
+        }
+        
+
+        &:hover {
+            .bg {
+                fill: $mainColor;
+            }
+
+            .arrow {
+                fill: $mainColor2;
+            }
+        }
+    }
+}
+
+.block {
+    padding: 80px 0 70px 0;
+}
+
+.block-title {
+    //@include setWidthAndHeight(100%, 100%);
+    width: 100%;
+    text-align: center;
+    margin-bottom: 50px;
+
+    .title-line {
+        margin: 0 auto;
+        width: 100px;
+
+        hr {
+            border: 1px solid $mainColor;
+        }
+    }
+}
+
+.slider {
+    overflow: hidden;
+
+    .slider-box {
+        width: 300%;
+        position: relative;
+        left: 0;
+        transition: 1s all;
+
+        .slide {
+            width: 100%;
+        }
+    }
+
+    .bullet-section {
+        display: flex;
+
+        .bullet {
+            background: $mainColorLight;
+            padding: 7px;
+            @include setBorderRadius(50%);
+            margin: 0 5px;
+            cursor: pointer;
+            transition: 300ms all;
+
+            &:hover {
+                background: $mainColor;
+            }
+        }
+
+        .selected {
+            background: $mainColor;
+        }
+    }
+}
+
+#about {
+    .col {
+        width: 50%;
+    }
+
+    img {
+        max-width: 100%;
+        margin-top: 20px;
+    }
+}
+
+#feature {
+    background: $blockColor;
+
+    .title {
+        margin: 0 auto;
+        max-width: 800px;
+        text-align: center;
+        padding-bottom: 70px;
+
+        p {
+            font-size: 18px;
+        }
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    .icon svg {
+        @include setWidthAndHeight(60px, 60px);
+        transform: scale(0.8, 0.7);
+        margin: 7px 15px 0 15px;
+        fill: $fontColor;
+    }
+
+    .text {
+        p {
+            line-height: 24px;
+            padding-bottom: 10px;
+        }
+    }
+}
+
+#feature-2 {
+    .col {
+        width: 50%;
+    }
+
+    img {
+        max-width: 100%;
+        margin-top: 20px;
+    }
+}
+
+#howto {
+    * {
+        color: white;
+    }
+
+    *:not(:last-child) {
+        margin-bottom: 15px;
+    }
+
+    .container {
+        height: 90%;
+        display: flex;
+        align-items: center;
+
+        .col {
+            width: 60%;
+            text-align: center;
+            margin: 0 auto;
+        }
+    }
+
+    .button {
+        font-weight: 500;
+        width: 280px;
+        @include setBorderRadius(5px);
+        margin: 0 auto;
+    }
+
+    .button.filled {
+        &:hover {
+            @include setColorAndBackground($mainColor2, $mainColorDark);
+            border-color: $mainColorDark;
+        }
+    }
+}
+
+#price {
+    h3 {
+        font-size: 21px;
+    }
+
+    .container {
+        .col {
+            border: 1px solid $formPlaceholderText;
+            text-align: center;
+            padding: 30px 40px 50px 40px;
+
+            .icon svg {
+                @include setWidthAndHeight(60px, 60px);
+                transform: scale(1.2);
+                margin: 7px 15px 0 15px;
+                fill: $formPlaceholderText;
+            }
+        }
+    }
+
+    .price-section {
+         .range {
+            position: relative;
+            bottom: 40px;
+        }
+
+        .price-value {
+            font-size: 50px;
+            font-weight: 500;
+            color: $mainColor;
+        }
+    }
+
+    .features {
+        p {
+            font-size: 14px;
+            border-bottom: 1px solid $formPlaceholderText;
+            margin-top: 10px;
+            padding-bottom: 10px; 
+        }
+
+        b {
+            font-weight: 500;
+        }
+
+        s {
+            text-decoration: line-through;
+        }
+    }
+
+    .button-section {
+        .button {
+            font-weight: 500;
+            width: 280px;
+            @include setBorderRadius(5px);
+            margin: 0 auto;
+        }
+    
+        .button.filled {
+            &:hover {
+                @include setColorAndBackground($mainColor2, $mainColorDark);
+                border-color: $mainColorDark;
+            }
+        }
+    }
+}
+
+#clients {
+    background: $blockColor;
+
+    .container {
+        height: 177px;
+
+        .row:last-of-type {
+            position: relative;
+            bottom: 100px;
+            justify-content: space-around;
+        }
+
+        .col {
+            background: center center / contain no-repeat;
+            padding: 100px;
+        }
+    }
+}
+
+#reviews {
+    .container {
+        .row {
+            justify-content: center;
+        }
+
+        .col {
+            text-align: center;
+            margin-right: 0;
+
+            * {
+                margin-bottom: 15px;
+            }
+
+            .avatar {
+                margin: 0 auto;
+
+                img {
+                    height: 80px;
+                    @include setBorderRadius(50%);
+                }
+            }
+
+            p {
+                font-size: 14px;
+
+                i {
+                    color: $mainColor;
+                }
+            }
+        }
+    }
+}
+
+#contacts {
+    .icon svg {
+        @include setWidthAndHeight(25px, 25px);
+        //transform: scale(1.2);
+        margin: 7px 15px 0 0;
+        fill: $mainColor;
+    }
+
+    h3 {
+        font-size: 21px;
+        color: $mainColor2;
+
+        u {
+            font-weight: 500;
+            color: $mainColor;
+        }
+    }
+
+    p {
+        color: $mainColor2;
+    }
+
+    a {
+        color: $mainColor2;
+        font-size: 14px;
+        line-height: 37px;
+        transition: 300ms all;
+
+        &:hover {
+            color: $mainColor;
+        }
+    }
+
+    .container {
+        display: flex;
+        align-items: center;
+        height: 100%;
+
+        .row {
+            width: 100%;
+        }
+
+        .row.item {
+            justify-content: left;
+        }
+    }
+
+    .form {
+        margin: 20px;
+    }
+}
+
+#footer {
+    padding: 50px 0;
+
+    .container {
+        .row {
+            justify-content: center;
+
+            .icon {
+                display: flex;
+                align-items: center;
+                height: 100%;
+                margin: 0 5px;
+                padding: 10px;
+                border: 1px solid $mainColor;
+                @include setBorderRadius(50%);
+                cursor: pointer;
+                transition: 500ms all;
+
+                svg {
+                    @include setWidthAndHeight(20px, 20px);
+                    //transform: scale(1.2);
+                    margin: auto;
+                    fill: $mainColor;
+
+                    path {
+                        transition: 500ms all;
+                    }
+                }
+
+                &:hover {
+                    background: $mainColor;
+
+                    svg path {
+                        fill: $mainColor2;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//
+// JavaScript classes and animation
+//
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+.fadeIn {
+    animation: fadeIn 1s ease;
+    animation-play-state: paused;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        top: +25%;
+    }
+    to {
+        opacity: 1;
+        top: 0;
+    }
+}
+.slideUp {
+    position: relative;
+    animation: slideUp 1s ease;
+    animation-play-state: paused;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        top: -100%;
+    }
+    to {
+        opacity: 1;
+        top: 0;
+    }
+}
+.slideDown {
+    position: relative;
+    animation: slideDown 1s ease;
+    animation-play-state: paused;
+}
+
+@keyframes slideLeft {
+    from {
+        opacity: 0;
+        left: +50%;
+    }
+    to {
+        opacity: 1;
+        left: 0;
+    }
+}
+.slideLeft {
+    position: relative;
+    animation: slideLeft 1s ease;
+    animation-play-state: paused;
+}
+
+@keyframes slideRight {
+    from {
+        opacity: 0;
+        left: -50%;
+    }
+    to {
+        opacity: 1;
+        left: 0;
+    }
+}
+.slideRight {
+    position: relative;
+    animation: slideRight 1s ease;
+    animation-play-state: paused;
+}
+
+.active {
+    animation-play-state: running;
+}
+
+.fixed {
+    position: fixed;
+    top: 0;
+}
